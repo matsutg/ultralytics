@@ -1,6 +1,6 @@
 from ultralytics import YOLO
 import torch
-from torch.utils.tensorboard import SummaryWriter
+# from torch.utils.tensorboard import SummaryWriter
 
 torch.cuda.set_device(0) # Set to your desired GPU number
 
