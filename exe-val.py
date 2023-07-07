@@ -6,7 +6,7 @@ torch.cuda.set_device(0) # Set to your desired GPU number
 
 # Load a model
 # model = YOLO("yolov8n.yaml")  # build a new model from scratch
-model = YOLO("C:/Users/KikuchiLab/Documents/project/yolov8/ultralytics/runs/segment/epoch100/weights/best.pt")  # load a pretrained model (recommended for training)
+model = YOLO("C:/Users/kikuchilab/Documents/Project/yolov8/ultralytics/runs/segment/epoch100/weights/best.pt")
 
 # Validate the model
 metrics = model.val()  # no arguments needed, dataset and settings remembered
