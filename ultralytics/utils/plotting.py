@@ -505,7 +505,7 @@ def feature_visualization(x, module_type, stage, n=32, save_dir=Path('runs/detec
         n (int, optional): Maximum number of feature maps to plot. Defaults to 32.
         save_dir (Path, optional): Directory to save results. Defaults to Path('runs/detect/exp').
     """
-    feature_list = ["stage21_C2f_features", "stage15_C2f_features", "stage18_C2f_features"]
+    feature_list = ["stage15_C2f_features", "stage18_C2f_features", "stage21_C2f_features"]
     for m in ['Detect', 'Pose', 'Segment']:
         if m in module_type:
             return
