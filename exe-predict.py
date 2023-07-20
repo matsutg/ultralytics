@@ -9,7 +9,7 @@ torch.cuda.set_device(0) # Set to your desired GPU number
 model = YOLO(r"C:\Users\KikuchiLab\Documents/Project/yolov8/ultralytics/runs/segment/train-epoch100/weights/best.pt")  # load a pretrained model (recommended for training)
 
 # Predict with the model
-results = model(r"C:\Users\KikuchiLab\Documents\Project\yolov8\datasets\nist-seg\images\test", save=False, 
+results = model(r"C:\Users\KikuchiLab\Documents\Project\yolov8\ultralytics\runs\segment\predict3-nakajima\crops\k\2H6A9795.jpg", save=True, 
                 device=0, save_txt=False, save_conf=True, show_labels=True, show_conf=True, boxes=False, retina_masks=False, 
                 visualize=True)  # predict on an image
 
