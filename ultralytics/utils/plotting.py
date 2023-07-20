@@ -509,7 +509,7 @@ def feature_visualization(x, module_type, stage, n=32, save_dir=Path('runs/detec
     for m in ['Detect', 'Pose', 'Segment']:
         if m in module_type:
             return
-    batch, channels, height, width = x.shape  # batch, channels, height, width
+    channels= x.shape[1]  # batch, channels, height, width
 
     feature_name = f"stage{stage}_{module_type.split('.')[-1]}_features" # 特徴マップの名前
     if feature_name in feature_list: # 保存した特徴マップ(feature_list)に含まれるなら        
