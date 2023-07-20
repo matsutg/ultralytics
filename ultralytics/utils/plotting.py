@@ -505,23 +505,16 @@ def feature_visualization(x, module_type, stage, n=32, save_dir=Path('runs/detec
         n (int, optional): Maximum number of feature maps to plot. Defaults to 32.
         save_dir (Path, optional): Directory to save results. Defaults to Path('runs/detect/exp').
     """
+    feature_list = ["stage21_C2f_features", "stage15_C2f_features", "stage18_C2f_features"]
     for m in ['Detect', 'Pose', 'Segment']:
         if m in module_type:
             return
     batch, channels, height, width = x.shape  # batch, channels, height, width
-    if height > 1 and width > 1:
-        f = save_dir / f"stage{stage}_{module_type.split('.')[-1]}_features.png"  # filename
 
-        blocks = torch.chunk(x[0].cpu(), channels, dim=0)  # select batch index 0, block by channels
-        n = min(n, channels)  # number of plots
-        fig, ax = plt.subplots(math.ceil(n / 8), 8, tight_layout=True)  # 8 rows x n/8 cols
-        ax = ax.ravel()
-        plt.subplots_adjust(wspace=0.05, hspace=0.05)
-        for i in range(n):
-            ax[i].imshow(blocks[i].squeeze())  # cmap='gray'
-            ax[i].axis('off')
+    feature_name = f"stage{stage}_{module_type.split('.')[-1]}_features" # 特徴マップの名前
+    if feature_name in feature_list: # 保存した特徴マップ(feature_list)に含まれるなら        
+        f = save_dir / feature_name +".npy"  # filename
+        n = max(n, channels)  # number of plots
 
         LOGGER.info(f'Saving {f}... ({n}/{channels})')
-        plt.savefig(f, dpi=300, bbox_inches='tight')
-        plt.close()
-        np.save(str(f.with_suffix('.npy')), x[0].cpu().numpy())  # npy save
+        np.save(f, x.cpu().numpy())  # npy save
