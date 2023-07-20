@@ -513,8 +513,8 @@ def feature_visualization(x, module_type, stage, n=32, save_dir=Path('runs/detec
 
     feature_name = f"stage{stage}_{module_type.split('.')[-1]}_features" # 特徴マップの名前
     if feature_name in feature_list: # 保存した特徴マップ(feature_list)に含まれるなら        
-        f = save_dir / feature_name +".npy"  # filename
+        f = str(save_dir / feature_name) + ".npy"  # filename
         n = max(n, channels)  # number of plots
 
         LOGGER.info(f'Saving {f}... ({n}/{channels})')
-        np.save(f, x.cpu().numpy())  # npy save
+        np.save(f, x[0].cpu().numpy())  # npy save
